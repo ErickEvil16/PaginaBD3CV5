@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexión PHP POSTGRESS</title>
+    <title>Conexión PHP POSTGRES</title>
 </head>
 <body>
     <?php
-    include_once ("Conexion.php")
-    CConexion::ConexionBD()
+    include_once("Conexion.php");
+    CConexion::ConexionBD();
     ?>
 </body>
 </html>
