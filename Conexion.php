@@ -13,12 +13,20 @@ class CConexion {
         $conn = null;
 
         try {
-            // Conexión con PDO (forma recomendada)
-            $conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "✅ Conexión correcta a la BD";
+            // 🔹 Conexión PDO a PostgreSQL con codificación UTF-8
+            $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;options='--client_encoding=UTF8'";
+            $conn = new PDO($dsn, $username, $password, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ]);
+
+            // 🔹 Asegurar codificación UTF-8
+            $conn->exec("SET CLIENT_ENCODING TO 'UTF8'");
+
+            // echo "✅ Conexión correcta a la BD"; // (opcional, puede omitirse en producción)
         } catch (PDOException $exp) {
-            echo "Error al conectar con la BD: " . $exp->getMessage();
+            die("❌ Error al conectar con la BD: " . htmlspecialchars($exp->getMessage()));
         }
 
         return $conn;
