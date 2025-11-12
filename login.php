@@ -1,4 +1,7 @@
 <?php
+// login.php (vulnerable intencionalmente, solo cambié la forma de obtener las credenciales)
+
+$config = require __DIR__ . '/config.local.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo "Método no permitido";
@@ -12,26 +15,26 @@ if ($usuario === '' || $contrasena === '') {
     echo "Usuario o contraseña vacíos";
     exit;
 }
-    $host = "pg-2bdbe7d3-erickgamer15yt-5f14.j.aivencloud.com";
-    $dbname = "defaultdb";
-    $user = "avnadmin";
-    $password = "AVNS_RsCCFQnu5hSG4ioe3ES";
-    $port = "12340";
+
+// Cargar credenciales desde config.local.php
+$host = $config['DB_HOST'];
+$dbname = $config['DB_NAME'];
+$user = $config['DB_USER'];
+$password = $config['DB_PASSWORD'];
+$port = $config['DB_PORT'];
 
 $conn_string = "host=$host port=$port dbname=$dbname user=$user password=$password";
 $dbconn = pg_connect($conn_string);
-
 
 if (!$dbconn) {
     echo "Error al conectar a la BD";
     exit;
 }
 
-//Linea de SQL donde concatena los datos a buscar
+// Mantengo la concatenación (vulnerabilidad intencional para fines académicos)
 $sql = "SELECT id, usuario, contrasena FROM usuariossqli 
         WHERE usuario = '" . $usuario . "' AND contrasena = '" . $contrasena . "';";
 
-//Busqueda del resultado de la busqueda
 $result = pg_query($dbconn, $sql);
 
 if (!$result) {
@@ -46,7 +49,6 @@ if (pg_num_rows($result) === 0) {
     pg_close($dbconn);
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -72,14 +74,10 @@ if (pg_num_rows($result) === 0) {
         </thead>
         <tbody>
             <?php
-
-            //Impresión de los usuarios con ese mismo nombre y contraseña
-
             while ($row = pg_fetch_assoc($result)) {
-
                 $id = (int)$row['id'];
                 $usuario_row = $row['usuario'];
-                $contrasena_row =$row['contrasena'];
+                $contrasena_row = $row['contrasena'];
 
                 echo "<tr>";
                 echo "<td>{$id}</td>";
@@ -98,6 +96,3 @@ if (pg_num_rows($result) === 0) {
 pg_free_result($result);
 pg_close($dbconn);
 ?>
-
-
-a
