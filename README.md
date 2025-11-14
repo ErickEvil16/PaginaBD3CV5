@@ -9,6 +9,7 @@ El objetivo central es la creación de una base de datos correctamente estructur
 Objetivo general
 • Desarrollar una base de datos robusta, normalizada y funcional que permita gestionar información agrícola, complementada con una aplicación web que realice operaciones CRUD sobre los datos almacenados.
 Objetivos específicos
+
 • Diseñar un modelo entidad–relación adecuado para representar semillas, tipos y su relación.
 • Implementar la base de datos en un SGDB relacional (PostgreSQL) con integridad referencial.
 • Desarrollar un sistema web en PHP con PDO capaz de interactuar con la base de datos.
