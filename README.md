@@ -11,6 +11,7 @@ Objetivo general
 Objetivos específicos
 
 • Diseñar un modelo entidad–relación adecuado para representar semillas, tipos y su relación.
+
 • Implementar la base de datos en un SGDB relacional (PostgreSQL) con integridad referencial.
 • Desarrollar un sistema web en PHP con PDO capaz de interactuar con la base de datos.
 • Aplicar buenas prácticas de programación, seguridad de consultas y manejo de errores.
