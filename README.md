@@ -149,3 +149,6 @@ Esta estructura permite mantener un código ordenado, modular y fácil de modifi
 • Las consultas muestran la correcta relación entre las tablas.
 
 • Todo el flujo de datos opera adecuadamente desde la interfaz web hasta la base de datos.
+
+
+[![Captura-de-pantalla-2026-01-09-125801.png](https://i.postimg.cc/RZmBcZh7/Captura-de-pantalla-2026-01-09-125801.png)](https://postimg.cc/PPS9HhmJ)
